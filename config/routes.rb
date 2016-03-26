@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  get '/:token' => 'messages#show'
-  get 'messages/:token' => 'messages#show'
+  get '/:token' => 'messages#view'
   get 'create' => 'messages#new'
+  post 'messages/validate' => 'messages#validate'
+  resources :messages
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
