@@ -1,62 +1,48 @@
 class MessagesController < ApplicationController
-  
-  def show
-  	message_from_db = Message.find_by_token(params[:token])
-    #debugger
-    @message = message_from_db.destroy
+
+  def show    
+    @message = Message.find_by(key: params[:key])
+    if (!@message)
+      redirect_to "/"
+    end
   end
 
   def new
-  	@message = Message.new
+    @message = Message.new
   end
 
   def create
-  	@message = Message.new(message_params)
-  	if (@message.valid?)
-  		@message.token = get_token
-  		@message.save
-  		render 'confirm'
-  	else
-  		render 'new'
-    end
-  end
-
-  def view
-    message = Message.find_by(token: params[:token])
-    #debugger
-    if !message
-      render 'deleted'
-    elsif message.password == ""
-      @message = message.destroy
-      render 'show'
+    @message = Message.new(message_params)
+    @message.key = get_unique_key
+    if (@message.valid?)
+      @message.save
+      @message.tokens.create(key: get_unique_token_key)
+      redirect_to controller: 'message_viewer', action: 'details', key: @message.key
     else
-      render 'password'
+      render 'new'
     end
-  end
-
-  def validate
-    message = Message.find_by(token: params[:token])
-    if message.password == params[:password]
-      @message = message.destroy
-      render 'show'
-    else
-      flash.now[:danger] = 'Invalid password'
-      render 'password'
-    end
-  end
-
-  def confirm
-  end
-
-  def deleted
   end
 
   private
-  	def message_params
-  		params.require(:message).permit(:message, :password)
-  	end
+  def get_unique_token_key
+      loop do
+        key = [*('a'..'z'),*('0'..'9')].shuffle[0,8].join
+        return key if !Token.find_by(key: key)
+      end
+  end
 
-  	def get_token
-  		[*('a'..'z'),*('0'..'9')].shuffle[0,8].join
-  	end
+  def get_unique_key
+      loop do
+        key = [*('a'..'z'),*('0'..'9')].shuffle[0,8].join
+        return key if !get_message_from_key(key)
+      end
+  end
+
+  def get_message_from_key(key)
+    Message.find_by(key: key)
+  end
+
+  def message_params
+      params.require(:message).permit(:message, :password)
+    end
 end

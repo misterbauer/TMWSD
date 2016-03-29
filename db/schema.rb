@@ -11,14 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325032907) do
+ActiveRecord::Schema.define(version: 20160328221600) do
 
   create_table "messages", force: :cascade do |t|
     t.string   "message"
     t.string   "password"
     t.string   "token"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
+    t.string   "key"
+  end
+
+  create_table "tokens", force: :cascade do |t|
+    t.string   "key"
+    t.integer  "message_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "tokens", ["message_id"], name: "index_tokens_on_message_id"
 
 end

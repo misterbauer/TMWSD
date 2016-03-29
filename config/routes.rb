@@ -1,7 +1,10 @@
-Rails.application.routes.draw do
-  get '/:token' => 'messages#view'
-  get 'create' => 'messages#new'
-  post 'messages/validate' => 'messages#validate'
+Rails.application.routes.draw do    
+  get '/message/:key' => 'message_viewer#details'
+  post '/message/:key' => 'message_viewer#addtoken'  
+  get 'missing' => 'message_viewer#deleted'
+  get 'create' => 'messages#new'  
+  get '/:key' => 'message_viewer#view'
+  post 'messages/validate' => 'message_viewer#validate'
   resources :messages
 
   # The priority is based upon order of creation: first created -> highest priority.

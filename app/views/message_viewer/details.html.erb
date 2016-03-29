@@ -1,0 +1,8 @@
+<% url_count = @message.tokens.count %>
+<% pluralized_URL = "URL#{(url_count> 1)? "s:":":"}" %>
+<h2 id="details-title" class="center">Access your messages at the following <%= pluralized_URL %></h2>
+<% @message.tokens.each do |token| %>
+<% url = base_url + "/" + token.key %>
+<h2 class="message-url"><a href='<%= url %>'><%= url %></a></h2>
+<% end %>
+<h3 class="center"><%= link_to("Add Url", {:controller => :message_viewer, :action => :addtoken}, :method => :post) %></h3>
