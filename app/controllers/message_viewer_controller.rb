@@ -58,9 +58,9 @@ class MessageViewerController < ApplicationController
 
     def show_and_destroy_message(token)
       @message = token.destroy.message
-      if (@message.tokens.count == 0)
-      	@message.destroy
-      end
+      #if (@message.tokens.count == 0)
+      #	@message.destroy
+      #end
       flash.now[:danger] = "This message has been deleted."
       render 'show'
     end

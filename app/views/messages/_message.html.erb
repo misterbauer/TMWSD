@@ -1,0 +1,5 @@
+<% message_status = message.tokens.any? ? "active" : "deleted" %>
+<tr class="message-<%= message_status %> message-id-<%= message.id %>">
+  <td><%= message.key %></td>
+  <td><%= message_status.upcase %></td> 
+</tr>

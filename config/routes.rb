@@ -1,4 +1,8 @@
 Rails.application.routes.draw do    
+  get 'users/new'
+
+  get 'users/show'
+
   get '/message/:key' => 'message_viewer#details'
   post '/message/:key' => 'message_viewer#addtoken'  
   get 'missing' => 'message_viewer#deleted'
@@ -6,6 +10,7 @@ Rails.application.routes.draw do
   get '/:key' => 'message_viewer#view'
   post 'messages/validate' => 'message_viewer#validate'
   resources :messages
+  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

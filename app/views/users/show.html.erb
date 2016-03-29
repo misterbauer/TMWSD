@@ -1,0 +1,23 @@
+<% provide(:title, @user.name) %>
+	<div class="row">
+	<aside class="col-md-4">
+		<section id="user-info" class="user-info">
+			<h1><%= @user.name %></h1>
+			<h2><%= @user.email %></h2>
+		</section>
+	</aside>	
+	<div class="col-md-8">
+	<% if @user.messages.any? %>
+		<table style="width:100%">
+		  <tr>
+		    <th>URL</th>
+		    <th>STATUS</th>
+		  </tr>
+		  <%= render @user.messages %>
+		</table>
+	<% else %>
+		<h2 class="center">No Messages</h2>
+	<% end %>
+	</div>
+
+</div>
