@@ -18,7 +18,7 @@
 		  <%= render @user.messages %>
 		</table>
 	<% else %>
-		<h2 class="center">No Messages</h2>
+		<h2 class="center"><%= link_to "Create a Message", {:controller => :messages, :action => :new} %></h2>
 	<% end %>
 	</div>
 
