@@ -12,7 +12,12 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = User.find(3).messages.new(message_params)
+    if logged_in?
+      @message = current_user.messages.new(message_params)
+    else
+      @message = Message.new(message_params)
+    end
+
     @message.key = get_unique_key
     if (@message.valid?)
       @message.save

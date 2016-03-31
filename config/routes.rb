@@ -1,14 +1,21 @@
-Rails.application.routes.draw do    
-  get 'users/new'
+Rails.application.routes.draw do   
 
-  get 'users/show'
+  get 'missing' => 'message_viewer#deleted'
+  get 'create' => 'messages#new'  
+  get 'signup' => 'users#new'
+
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
+
+  get '/:key' => 'message_viewer#view'
 
   get '/message/:key' => 'message_viewer#details'
   post '/message/:key' => 'message_viewer#addtoken'  
-  get 'missing' => 'message_viewer#deleted'
-  get 'create' => 'messages#new'  
-  get '/:key' => 'message_viewer#view'
   post 'messages/validate' => 'message_viewer#validate'
+
+  get '/users/show'
+  
   resources :messages
   resources :users
 
