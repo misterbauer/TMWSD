@@ -1,5 +1,9 @@
-<% message_status = message.tokens.any? ? "active" : "deleted" %>
+<% message_active = message.tokens.any? %>
+<% font_color = message_active ? "green" : "red" %>
+<% message_status = message_active ? "active" : "deleted" %>
+<% message_url = root_url + "message/" + message.key %>
+<% message_link = message_active ? link_to(message.key, message_url) : message.key %>
 <tr class="message-<%= message_status %> message-id-<%= message.id %>">
-  <td><%= message.key %></td>
-  <td><%= message_status.upcase %></td> 
+  <td><%= message_link %></td>
+  <td style="color: <%= font_color %>"><%= message_status.upcase %></td> 
 </tr>

@@ -36,21 +36,27 @@ aside {
   }
 }
 
-.user-profile {	
-	background-color: $gray-extra-light;
-}
-
 #user-info {
 	h1, h2 {
 		text-align: center;
 	}
 }
 
+.user-messages {
+  padding-top: 10px;
+  h1 {
+    font-size: 1.4em;
+    text-align: left;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+  }
+}
+
 @media only screen and (min-width : 992px) {
 aside {
   section.user_info {
-    border-right: 1px solid $gray-darker;
-    border-bottom: none;
+    border: 1px solid $gray-extra-light;
     }
   }
 }
@@ -58,7 +64,7 @@ aside {
 @media only screen and (max-width : 992px) {
 aside {
   section.user_info {
-    border-bottom: 1px solid $gray-darker;
+    border-bottom: 1px solid $gray-extra-light;
     }
   }
 }

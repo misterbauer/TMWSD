@@ -7,8 +7,12 @@ $gray-light: #aaaaaa;
 $gray-medium-light: #eaeaea;
 $gray: #888888;
 $gray-darker: #666666;
-
+@grid-float-breakpoint: 1400px;
 /* universal */
+
+html, body {
+  font-family: 'Segoe UI Light', sans-serif;
+}
 
 body {
   padding-top: 60px;
@@ -37,14 +41,12 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 3em;
-  letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
 }
 
 h2 {
   font-size: 1.2em;
-  letter-spacing: -1px;
   text-align: center;
   font-weight: normal;
   color: $gray-darker;
@@ -64,9 +66,8 @@ p {
   font-size: 1.7em;
   color: white;
   text-transform: uppercase;
-  letter-spacing: -1px;
+  letter-spacing: 4px;
   padding-top: 9px;
-  font-weight: bold;
   &:hover {
     color: white;
     text-decoration: none;

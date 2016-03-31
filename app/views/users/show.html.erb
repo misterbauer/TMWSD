@@ -1,13 +1,14 @@
 <% provide(:title, @user.name) %>
 	<div class="row user-profile">
-	<aside class="col-md-3 col-md-offset-2">
+	<aside class="col-xs-8 col-xs-offset-2 col-md-3 col-md-offset-2">
 		<section id="user-info" class="user_info">
 			<%= gravatar_for @user %>
 			<h1><%= @user.name %></h1>
 			<h2><%= @user.email %></h2>
 		</section>
 	</aside>	
-	<div class="col-md-5 user-messages">
+	<div class="col-xs-8 col-xs-offset-2 col-md-5 col-md-offset-0 user-messages">
+	<h1>Messages</h1>
 	<% if @user.messages.any? %>
 		<table style="width:100%">
 		  <tr>
