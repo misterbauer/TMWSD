@@ -1,8 +1,9 @@
 class MessageViewerController < ApplicationController
+  before_action :correct_user_logged_in, only: [:details]
 
 		def details
 			message = return_message(params[:key])
-			if message.is_deleted?
+			if !message || message.is_deleted?
 			  go_to_missing
 				return
 			else
@@ -69,16 +70,30 @@ class MessageViewerController < ApplicationController
       end
   	end
 
-  def return_token(key)
-  	Token.find_by(key: key)
-  end
+    def return_token(key)
+    	Token.find_by(key: key)
+    end
 
-  def return_message(key)
-    Message.find_by(key: key)
-  end
+    def return_message(key)
+      Message.find_by(key: key)
+    end
 
-  def go_to_missing
-		redirect_to '/missing'
-	end
+    def go_to_missing
+  		redirect_to '/missing'
+  	end
+
+    def go_to_login
+      flash[:danger] = "Please log in."
+      redirect_to login_url
+    end
+
+    def correct_user_logged_in()
+      message = return_message(params[:key])
+      if !!message && !!message.user_id
+        unless logged_in? && message.user_id == current_user.id
+          go_to_login
+        end
+      end 
+    end
 
 end
