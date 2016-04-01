@@ -1,8 +1,8 @@
 class MessageViewerController < ApplicationController
 
 		def details
-			message = Message.find_by(key: params[:key])
-			if !message
+			message = return_message(params[:key])
+			if message.is_deleted?
 			  go_to_missing
 				return
 			else
@@ -11,7 +11,7 @@ class MessageViewerController < ApplicationController
 	  end
 
 	def addtoken
-		@message = Message.find_by(key: params[:key])
+		@message = return_message(params[:key])
 		if (!@message)
 			go_to_missing
 		else
@@ -27,7 +27,7 @@ class MessageViewerController < ApplicationController
       return
     end
     message = token.message
-    if message.password == ""
+    if message.password_digest.nil?
       show_and_destroy_message(token)
     else
       render 'password'
@@ -71,6 +71,10 @@ class MessageViewerController < ApplicationController
 
   def return_token(key)
   	Token.find_by(key: key)
+  end
+
+  def return_message(key)
+    Message.find_by(key: key)
   end
 
   def go_to_missing

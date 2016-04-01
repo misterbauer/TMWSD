@@ -4,7 +4,7 @@
 		<section id="user-info" class="user_info">
 			<%= gravatar_for @user %>
 			<h1><%= @user.name %></h1>
-			<h2><%= @user.email %></h2>
+			<div class="center"><%= @user.email %></div>
 		</section>
 	</aside>	
 	<div class="col-xs-8 col-xs-offset-2 col-md-5 col-md-offset-0 user-messages">
@@ -18,7 +18,7 @@
 		  <%= render @user.messages %>
 		</table>
 	<% else %>
-		<h2 class="center">No messages yet! Would you like to <%= link_to "create one", {:controller => :messages, :action => :new} %>?</h2>
+		<h2 class="center">No messages?! You should probably <%= link_to "create one", {:controller => :messages, :action => :new} %>.</h2>
 	<% end %>
 	</div>
 

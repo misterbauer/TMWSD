@@ -1,6 +1,6 @@
 
-$gray-extra-light: #eeeeee;
 $gray-darker: #666666;
+$semi-transparent-background: rgba(255,255,255,.3);
 
 /* sidebar */
 
@@ -54,17 +54,15 @@ aside {
 }
 
 @media only screen and (min-width : 992px) {
-aside {
-  section.user_info {
-    border: 1px solid $gray-extra-light;
+  aside {
+    section.user_info { 
+      background: $semi-transparent-background;
     }
   }
 }
 
 @media only screen and (max-width : 992px) {
-aside {
-  section.user_info {
-    border-bottom: 1px solid $gray-extra-light;
-    }
+  .user-messages {
+    background: $semi-transparent-background;
   }
 }

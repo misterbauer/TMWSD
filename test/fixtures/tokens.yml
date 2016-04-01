@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  key: MyString
+  key: key1key1
   message_id: 
 
 two:
-  key: MyString
+  key: key2key2
   message_id: 

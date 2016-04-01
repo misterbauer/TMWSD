@@ -3,9 +3,9 @@
 one:
   message: MyString
   password: MyString
-  key: MyString
+  key: keynumber1
 
 two:
   message: MyString
   password: MyString
-  key: MyString
+  key: keynumber2

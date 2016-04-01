@@ -9,4 +9,13 @@ class ActiveSupport::TestCase
   def is_logged_in?
   	!session[:user_id].nil?
   end
+
+  def log_in_user(id)
+  	session[:user_id] = id
+  end
+
+  def log_out_user 
+  	session.delete(:user_id)
+    @current_user = nil
+  end
 end

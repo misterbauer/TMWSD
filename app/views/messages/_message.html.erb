@@ -2,7 +2,8 @@
 <% font_color = message_active ? "green" : "red" %>
 <% message_status = message_active ? "active" : "deleted" %>
 <% message_url = root_url + "message/" + message.key %>
-<% message_link = message_active ? link_to(message.key, message_url) : message.key %>
+<% message_link = message_active ? link_to(message_url, message_url) : message_url %>
+
 <tr class="message-<%= message_status %> message-id-<%= message.id %>">
   <td><%= message_link %></td>
   <td style="color: <%= font_color %>"><%= message_status.upcase %></td> 

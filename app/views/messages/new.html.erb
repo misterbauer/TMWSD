@@ -1,18 +1,18 @@
 <% provide :title,"Create a New Message" %>
 
-<h1>Create a New Message</h1>
+<h1 id="new-message-title">Create a New Message</h1>
+<p id="new-message-tag" class="center">TMWSD is a secure messaging service. Messages sent are automatically deleted when they are retrieved.</p>
 <div class="row">
-<div class="col-md-6 col-md-offset-3">
-	<%= form_for(@message) do |f| %>		
-		<%= render :partial => "shared/error_messages", :locals => { :object => @message } %>
-		<%= f.label :message %>
-		<%= f.text_area :message, class:"form_control", rows:10 %>
-		
-		<%= f.label :password %>
-		<%= f.password_field :password, class:"form_control", cols:10 %>
+	<div class="col-md-6 col-md-offset-3">
+		<%= form_for(@message) do |f| %>		
+			<%= render :partial => "shared/error_messages", :locals => { :object => @message } %>
+			<%= f.label :message %>
+			<%= f.text_area :message, class:"form_control", rows:6 %>
+			
+			<%= f.label :password %>
+			<%= f.password_field :password, class:"form_control", cols:10, placeholder: "(Optional)" %>
 
-		<%= f.submit "Save my Message", class:"btn btn-primary" %>
-	<% end %>
-
-</div>
+			<%= f.submit "Save my Message", class:"btn btn-primary" %>
+		<% end %>
+	</div>
 </div>

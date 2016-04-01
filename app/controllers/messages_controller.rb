@@ -1,12 +1,5 @@
 class MessagesController < ApplicationController
 
-  def show    
-    @message = Message.find_by(key: params[:key])
-    if (!@message)
-      redirect_to "/"
-    end
-  end
-
   def new
     @message = Message.new
   end
@@ -19,8 +12,7 @@ class MessagesController < ApplicationController
     end
 
     @message.key = get_unique_key
-    if (@message.valid?)
-      @message.save
+    if (@message.save)
       @message.tokens.create(key: get_unique_token_key)
       redirect_to controller: 'message_viewer', action: 'details', key: @message.key
     else

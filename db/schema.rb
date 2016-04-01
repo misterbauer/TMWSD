@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329034802) do
+ActiveRecord::Schema.define(version: 20160401161956) do
 
   create_table "messages", force: :cascade do |t|
     t.string   "message"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20160329034802) do
     t.integer  "user_id"
   end
 
+  add_index "messages", ["key"], name: "index_messages_on_key", unique: true
+
   create_table "tokens", force: :cascade do |t|
     t.string   "key"
     t.integer  "message_id"
@@ -31,6 +33,7 @@ ActiveRecord::Schema.define(version: 20160329034802) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "tokens", ["key"], name: "index_tokens_on_key", unique: true
   add_index "tokens", ["message_id"], name: "index_tokens_on_message_id"
 
   create_table "users", force: :cascade do |t|
@@ -40,5 +43,7 @@ ActiveRecord::Schema.define(version: 20160329034802) do
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end

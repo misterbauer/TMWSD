@@ -13,7 +13,8 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)
   	if (@user.save)      
       log_in @user
-  		flash[:success] = "Welcome to the site!"
+      first_name = @user.name.split(" ")[0]
+  		flash[:success] = "Welcome to the site, #{first_name}!"
       redirect_to(@user)
   	else
   		render 'new'
@@ -26,10 +27,8 @@ class UsersController < ApplicationController
   	end
 
     # Before filters
-
-    # Confirms a logged-in user.
     def logged_in_user
-      unless logged_in?
+      unless logged_in? && current_user.id.to_s == params[:id]
         flash[:danger] = "Please log in."
         redirect_to login_url
       end
