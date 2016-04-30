@@ -1,5 +1,5 @@
 == README
-
+hosted at https://agile-sands-65491.herokuapp.com
 This application copies the functionality of https://tmwsd.ws/. 
 
 I built it in Ruby on Rails with two purposes:
